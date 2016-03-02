@@ -1,0 +1,36 @@
+<h1>Hello {{name}} Here is your To Do List!</h1>
+
+<h2>You have {{toDoCount}} items on your to do list.</h2>
+
+<form method="post">
+  Task: <input type="text" name="name" id="toDoName"> </br>
+  Location: <input type="text" name="location" id="toDoLocation"> </br>
+  Min Temp: <input type="text" name="minTemperature" id = "toDoMinTemp">
+  <input type = "hidden" name="boolhighlight" value="false">
+  </br>
+  <input type="submit" name="Add Item" value="Add Item"> 
+
+</form>
+
+{{#if toDo}}
+
+<ul>
+  {{#each toDo}}
+  <li>
+    <h3 id ={{this.id}}>{{this.name}}</h3>
+    <script>
+      var highLightMe = document.getElementById({{this.id}});
+      if({{this.highlight}}==true){
+      
+      highLightMe.className = "highlightElement";
+      }
+    </script>
+    <form method="post">
+      <input type="hidden" name="id" value="{{this.id}}">
+      <input type="submit" name="Done" value="Mark as Done">
+
+    </form>
+  </li>
+  {{/each}}
+</ul>
+{{/if}}
